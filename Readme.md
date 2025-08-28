@@ -14,3 +14,9 @@ Stemming is the process of reducing a word to its word stem that affixes to suff
 
 ### 3. Lemmatization
 Lemmatization technique is like stemming. The output we will get after lemmatization is called lemma which is root word rather than root stem, the output stem. After lemmitization we will getting a valid word that means the same thing
+
+### 4. Stopwords
+Stopwords are the common words in a language that usually don’t carry significant meaning in text analysis.
+
+Examples in English:
+`the, is, in, at, of, a, and, to, for, with, on, by, it`
