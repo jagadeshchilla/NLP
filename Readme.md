@@ -220,3 +220,100 @@ Sentence:
 * Modern NLP uses **word embeddings + transformers (BERT, GPT)** for richer context.
 
 ---
+
+
+### 10.What is TF–IDF?
+
+**TF–IDF (Term Frequency – Inverse Document Frequency)** is a **weighted version of Bag of Words**.
+It measures how important a word is in a **document** relative to the **whole corpus**.
+
+It helps reduce the impact of very common words (like *the, is, of*) and highlight **unique, informative words**.
+
+---
+
+## 🔹 Formula
+
+1. **Term Frequency (TF):**
+   How often a word appears in a document.
+
+   $$
+   TF(t,d) = \frac{\text{Count of term t in document d}}{\text{Total terms in document d}}
+   $$
+
+2. **Inverse Document Frequency (IDF):**
+   How rare the word is across all documents.
+
+   $$
+   IDF(t) = \log \left(\frac{\text{Total number of documents}}{\text{Number of documents containing term t}} \right)
+   $$
+
+3. **TF–IDF = TF × IDF**
+
+---
+
+Got it 👍 — let’s keep this crisp and clear.
+
+---
+
+### 11.What is **Word Embedding**?
+
+**Word Embedding** is a way of representing words as **dense numerical vectors** in such a way that words with similar meanings are close to each other in vector space.
+
+Unlike Bag of Words or TF–IDF (which are sparse and high-dimensional), embeddings capture **semantic meaning & context**.
+
+Example:
+
+* Vector(“king”) – Vector(“man”) + Vector(“woman”) ≈ Vector(“queen”)
+
+---
+
+## 🔹 Types of Word Embeddings
+
+1. **Frequency-based (count-based)**
+
+   * **Bag of Words (BoW)**
+   * **TF–IDF**
+   * **Co-occurrence Matrix (Count + SVD)**
+
+2. **Prediction-based (neural embeddings)**
+
+   * **Word2Vec** (CBOW, Skip-gram)
+   * **GloVe** (Global Vectors)
+   * **FastText** (subword embeddings)
+
+3. **Contextual embeddings (deep learning)**
+
+   * **ELMo** (Embeddings from Language Models)
+   * **BERT, GPT, Transformer-based models**
+
+---
+
+## 🔹 Flow Chart of Word Embeddings
+
+```
+                ┌─────────────────────────┐
+                │     Word Embeddings     │
+                └─────────────┬───────────┘
+                              │
+      ┌───────────────────────┴───────────────────────┐
+      │                                               │
+┌─────▼─────┐                                    ┌─────▼─────┐
+│ Frequency │                                    │ Prediction│
+│  based    │                                    │   based   │
+└─────┬─────┘                                    └─────┬─────┘
+      │                                               │
+ ┌────▼─────┐                                     ┌────▼─────┐
+ │  BoW     │                                     │ Word2Vec │
+ │  TF–IDF  │                                     │  GloVe   │
+ │  Co-Occ. │                                     │ FastText │
+ └──────────┘                                     └─────┬─────┘
+                                                        │
+                                                  ┌─────▼─────┐
+                                                  │ Contextual │
+                                                  │ Embeddings │
+                                                  │ (ELMo,     │
+                                                  │ BERT, GPT) │
+                                                  └───────────┘
+```
+
+---
