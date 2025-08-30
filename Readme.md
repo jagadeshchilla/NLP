@@ -316,4 +316,115 @@ Example:
                                                   └───────────┘
 ```
 
+
+### 12.What is Word2Vec?
+
+**Word2Vec** is a **neural network-based word embedding technique** developed by Google (Mikolov et al., 2013).
+
+* It represents words as **dense vectors** in a continuous space.
+* Words with similar meanings (e.g., *king* & *queen*, *car* & *automobile*) end up close together in that space.
+* Famous property:
+
+  ```
+  king - man + woman ≈ queen
+  ```
+
 ---
+
+## 🔹 How Word2Vec Works
+
+Word2Vec learns embeddings using **context prediction**:
+
+1. **CBOW (Continuous Bag of Words):**
+
+   * Predicts the **target word** given its **context words**.
+   * Example:
+     Context = \["I", **?**, "NLP"] → Predict "love".
+
+2. **Skip-Gram:**
+
+   * Predicts the **context words** given a **target word**.
+   * Example:
+     Target = "love" → Predict \["I", "NLP"].
+
+---
+
+## 🔹 Training Process
+
+* Input: One-hot encoded words.
+* Hidden Layer: Small dense layer (size = embedding dimension).
+* Output: Probability distribution over vocabulary.
+* Optimization: Uses **Negative Sampling / Hierarchical Softmax** to make training efficient.
+
+---
+
+## 🔹 Example
+
+Sentence: `"I love NLP"`
+
+* Vocabulary = {I, love, NLP}
+* Embedding dimension = 2 (for visualization)
+
+After training, vectors may look like:
+
+```
+I     → [0.8, 0.3]  
+love  → [0.9, 0.5]  
+NLP   → [0.2, 0.9]  
+```
+
+Here, `"I"` and `"love"` are closer compared to `"NLP"`.
+
+---
+
+
+## 🔹 Word2Vec Flow Chart
+
+```
+                  ┌───────────────────────┐
+                  │        Word2Vec        │
+                  └─────────────┬─────────┘
+                                │
+         ┌──────────────────────┴──────────────────────┐
+         │                                             │
+ ┌───────▼───────┐                             ┌───────▼────────┐
+ │      CBOW     │                             │   Skip-Gram    │
+ │ (Context → W) │                             │ (Word → Ctxt)  │
+ └───────┬───────┘                             └────────┬───────┘
+         │                                             │
+         └──────► Train NN → Learn Dense Vectors ◄─────┘
+```
+
+
+### 13.What is Average Word2Vec?
+
+* **Word2Vec** gives you a vector for **each word**.
+* But many ML models need a **single vector per sentence/document**.
+* So we simply **average the vectors of all words** in the text.
+
+This gives a fixed-length representation regardless of sentence length.
+
+---
+
+
+## 🔹 Flow of Average Word2Vec
+
+```
+Sentence: "I love NLP"
+
+   ┌────────┐   ┌────────┐   ┌─────────┐
+   │ Vector │   │ Vector │   │ Vector  │
+   │   I    │   │  love  │   │   NLP   │
+   └────────┘   └────────┘   └─────────┘
+        │            │             │
+        └──────► Take Mean ◄───────┘
+                  │
+            ┌───────────────┐
+            │ Avg Word2Vec  │
+            │ Single Vector │
+            └───────────────┘
+```
+
+---
+
+
